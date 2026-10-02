@@ -1,3 +1,19 @@
+async function checkUser() {
+
+    const {
+        data: { user }
+    } = await supabaseClient.auth.getUser();
+
+    if (!user) {
+        window.location.href = "login.html";
+        return null;
+    }
+
+    return user;
+}
+
+checkUser();
+
 async function loadElection() {
 
     const { data, error } = await supabaseClient
@@ -16,3 +32,38 @@ async function loadElection() {
 }
 
 loadElection();
+
+async function loadCandidates() {
+    // Get positions and candidates
+    const { data: positions, error } =
+    await supabaseClient
+        .from("positions")
+        .select(`
+            id,
+            name,
+            candidates (
+                id,
+                name,
+                department
+            )
+        `)
+        .eq("election_id", election.id);
+}
+
+loadCandidates();
+
+async function submitVote() {
+    // Get logged-in student
+    // Get selected candidates
+    // Insert votes into Supabase
+    const { data, error } = await supabaseClient
+    .from("ballots")
+    .insert({
+        election_id: electionId,
+        voter_id: user.id,
+        candidate_id: candidateId,
+        position_id: positionId
+    });
+}
+
+submitVote();
