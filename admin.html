@@ -1,1 +1,222 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin · CampusVote</title><link rel="stylesheet" href="css/style.css"></head><body><header class="nav"><b class="brand">Campus<span>Vote</span></b><nav><a href="student.html">Student</a><a href="results.html">Results</a><a href="#" id="logout">Logout</a></nav></header><main class="dash"><p class="eyebrow">ADMIN PORTAL</p><h1>Election management</h1><p class="muted">Demo administration dashboard</p><div class="stats"><div><small>Registered voters</small><strong>1,248</strong></div><div><small>Votes cast</small><strong>829</strong></div><div><small>Turnout</small><strong>66.4%</strong></div><div><small>Status</small><strong>Open</strong></div></div><section class="panel"><h2>Election configuration</h2><div class="formgrid"><label>Title<input value="Student Council Election 2026"></label><label>Status<select><option>Draft</option><option>Scheduled</option><option selected>Active</option><option>Closed</option><option>Published</option></select></label><label>Start<input type="datetime-local" value="2026-10-01T09:00"></label><label>End<input type="datetime-local" value="2026-10-05T17:00"></label></div><button class="btn">Save Configuration</button></section><section class="panel"><h2>Candidates</h2><table><tr><th>Name</th><th>Position</th><th>Department</th><th>Status</th></tr><tr><td>Aisha Rahman</td><td>President</td><td>Computer Science</td><td>Active</td></tr><tr><td>Rohan Das</td><td>President</td><td>Information Technology</td><td>Active</td></tr><tr><td>Neha Sharma</td><td>President</td><td>Commerce</td><td>Active</td></tr></table></section></main><script src="js/demo.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Admin · CampusVote</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="nav">
+
+        <b class="brand">
+            Campus<span>Vote</span>
+        </b>
+
+        <nav>
+            <a href="student.html">Student</a>
+            <a href="results.html">Results</a>
+            <a href="#" id="logout">Logout</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Main Dashboard -->
+    <main class="dash">
+
+        <p class="eyebrow">
+            ADMIN PORTAL
+        </p>
+
+        <h1>
+            Election management
+        </h1>
+
+        <p class="muted">
+            Demo administration dashboard
+        </p>
+
+
+        <!-- Statistics -->
+        <div class="stats">
+
+            <div>
+                <small>Registered voters</small>
+                <strong>1,248</strong>
+            </div>
+
+            <div>
+                <small>Votes cast</small>
+                <strong>829</strong>
+            </div>
+
+            <div>
+                <small>Turnout</small>
+                <strong>66.4%</strong>
+            </div>
+
+            <div>
+                <small>Status</small>
+                <strong>Open</strong>
+            </div>
+
+        </div>
+
+
+        <!-- Election Configuration -->
+        <section class="panel">
+
+            <h2>
+                Election configuration
+            </h2>
+
+            <div class="formgrid">
+
+                <label>
+                    Title
+
+                    <input
+                        type="text"
+                        value="Student Council Election 2026"
+                    >
+                </label>
+
+
+                <label>
+                    Status
+
+                    <select>
+
+                        <option>
+                            Draft
+                        </option>
+
+                        <option>
+                            Scheduled
+                        </option>
+
+                        <option selected>
+                            Active
+                        </option>
+
+                        <option>
+                            Closed
+                        </option>
+
+                        <option>
+                            Published
+                        </option>
+
+                    </select>
+                </label>
+
+
+                <label>
+                    Start
+
+                    <input
+                        type="datetime-local"
+                        value="2026-10-01T09:00"
+                    >
+                </label>
+
+
+                <label>
+                    End
+
+                    <input
+                        type="datetime-local"
+                        value="2026-10-05T17:00"
+                    >
+                </label>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn"
+            >
+                Save Configuration
+            </button>
+
+        </section>
+
+
+        <!-- Candidates -->
+        <section class="panel">
+
+            <h2>
+                Candidates
+            </h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Department</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+                        <td>Aisha Rahman</td>
+                        <td>President</td>
+                        <td>Computer Science</td>
+                        <td>Active</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Rohan Das</td>
+                        <td>President</td>
+                        <td>Information Technology</td>
+                        <td>Active</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Neha Sharma</td>
+                        <td>President</td>
+                        <td>Commerce</td>
+                        <td>Active</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+
+    <!-- Supabase JavaScript Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Supabase Configuration -->
+    <script src="js/supabase.js"></script>
+
+    <!-- Authentication / Logout -->
+    <script src="js/auth.js"></script>
+
+    <!-- Admin Protection -->
+    <script src="js/admin.js"></script>
+
+</body>
+
+</html>
