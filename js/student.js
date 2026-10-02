@@ -67,3 +67,16 @@ async function submitVote() {
 }
 
 submitVote();
+
+await supabaseClient.rpc(
+    "create_audit_log",
+    {
+        p_action: "VOTE_SUBMITTED",
+        p_entity_type: "ballot",
+        p_entity_id: null,
+        p_metadata: {
+            election_id: electionId,
+            position_id: positionId
+        }
+    }
+);
