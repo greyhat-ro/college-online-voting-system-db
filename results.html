@@ -1,1 +1,68 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Results · CampusVote</title><link rel="stylesheet" href="css/style.css"></head><body><header class="nav"><b class="brand">Campus<span>Vote</span></b><nav><a href="student.html">Vote</a><a href="#" id="logout">Logout</a></nav></header><main class="dash"><p class="eyebrow">RESULTS</p><h1>Election results</h1><p class="muted">Synthetic portfolio data.</p><div class="results"><section class="panel"><h2>President</h2><div class="bar"><span>Aisha Rahman</span><b>482</b></div><div class="meter"><i style="width:58%"></i></div><div class="bar"><span>Rohan Das</span><b>246</b></div><div class="meter"><i style="width:30%"></i></div><div class="bar"><span>Neha Sharma</span><b>101</b></div><div class="meter"><i style="width:12%"></i></div></section><section class="panel"><h2>Summary</h2><div class="row">Eligible voters <b>1,248</b></div><div class="row">Votes counted <b>829</b></div><div class="row">Turnout <b>66.43%</b></div><div class="row">Status <b>Published</b></div></section></div></main><script src="js/demo.js"></script></body></html>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Results · CampusVote</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <header class="nav">
+      <b class="brand">Campus<span>Vote</span></b>
+      <nav>
+        <a href="student.html">Vote</a>
+        <a href="#" id="logout">Logout</a>
+      </nav>
+    </header>
+    <main class="dash">
+      <p class="eyebrow">RESULTS DEMO</p>
+      <h1>Election results</h1>
+      <p class="muted">Synthetic portfolio data.</p>
+      <div class="results">
+        <section class="panel">
+          <h2>President</h2>
+          <div class="bar">
+            <span>Aisha Rahman</span><b>482</b>
+          </div>
+          <div class="meter">
+            <i style="width:58%"></i>
+          </div>
+          <div class="bar">
+            <span>Rohan Das</span><b>246</b>
+          </div>
+          <div class="meter">
+            <i style="width:30%"></i>
+          </div>
+          <div class="bar">
+            <span>Neha Sharma</span><b>101</b>
+          </div>
+          <div class="meter">
+            <i style="width:12%"></i>
+          </div>
+        </section>
+        <section class="panel">
+          <h2>Summary Demo</h2>
+          <div class="row">Eligible voters <b>1,248</b></div>
+          <div class="row">Votes counted <b>829</b></div>
+          <div class="row">Turnout <b>66.43%</b></div>
+          <div class="row">Status <b>Published</b></div>
+        </section>
+      </div>
+    </main>
+    <main class="dash">
+
+    <div class="head">
+        <div>
+            <p class="eyebrow">ELECTION RESULTS</p>
+            <h1>Student Council Election 2026</h1>
+        </div>
+    </div>
+
+    <div id="resultsContainer"></div>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/results.js"></script>
+  </body>
+</html>
