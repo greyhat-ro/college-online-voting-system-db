@@ -1,3 +1,22 @@
+async function logout() {
+
+    const { error } =
+        await supabaseClient.auth.signOut();
+
+    if (!error) {
+        window.location.href = "index.html";
+    }
+}
+
+const logoutButton = document.getElementById("logout");
+
+if (logoutButton) {
+    logoutButton.addEventListener("click", async (event) => {
+        event.preventDefault();
+        await logout();
+    });
+}
+
 const loginForm = document.getElementById("loginForm");
 
 loginForm.addEventListener("submit", async (event) => {
