@@ -2,6 +2,41 @@
 -- STUDENT READ ACCESS
 -- ==========================================
 
+-- Remove existing versions first
+
+drop policy if exists "Authenticated users can view active elections"
+on public.elections;
+
+drop policy if exists "Authenticated users can view positions"
+on public.positions;
+
+drop policy if exists "Authenticated users can view active candidates"
+on public.candidates;
+
+drop policy if exists "Students can submit their own ballots"
+on public.ballots;
+
+drop policy if exists "Users can view their own profile"
+on public.profiles;
+
+
+-- ==========================================
+-- PROFILES
+-- ==========================================
+
+create policy "Users can view their own profile"
+on public.profiles
+for select
+to authenticated
+using (
+    id = auth.uid()
+);
+
+
+-- ==========================================
+-- ELECTIONS
+-- ==========================================
+
 create policy "Authenticated users can view active elections"
 on public.elections
 for select
@@ -10,6 +45,10 @@ using (
     status = 'active'
 );
 
+
+-- ==========================================
+-- POSITIONS
+-- ==========================================
 
 create policy "Authenticated users can view positions"
 on public.positions
@@ -24,6 +63,10 @@ using (
     )
 );
 
+
+-- ==========================================
+-- CANDIDATES
+-- ==========================================
 
 create policy "Authenticated users can view active candidates"
 on public.candidates
@@ -43,7 +86,7 @@ using (
 
 
 -- ==========================================
--- STUDENT BALLOT INSERT
+-- BALLOTS
 -- ==========================================
 
 create policy "Students can submit their own ballots"
