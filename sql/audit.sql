@@ -1,13 +1,18 @@
--- Enable RLS
+-- ==========================================
+-- AUDIT LOGGING
+-- ==========================================
+
 alter table public.audit_logs enable row level security;
 
 
--- Function to create an audit entry
+-- ==========================================
+-- CREATE AUDIT LOG FUNCTION
+-- ==========================================
 
 create or replace function public.create_audit_log(
     p_action text,
     p_entity_type text,
-    p_entity_id uuid default null,
+    p_entity_id text default null,
     p_metadata jsonb default '{}'::jsonb
 )
 returns void
@@ -35,7 +40,15 @@ begin
 end;
 $$;
 
--- Only administrators can read audit logs
+
+-- ==========================================
+-- ADMIN READ ACCESS
+-- ==========================================
+
+drop policy if exists "Only admins can view audit logs"
+on public.audit_logs;
+
+
 create policy "Only admins can view audit logs"
 on public.audit_logs
 for select
@@ -43,3 +56,23 @@ to authenticated
 using (
     public.is_admin()
 );
+
+
+-- ==========================================
+-- FUNCTION SECURITY
+-- ==========================================
+
+revoke execute on function public.create_audit_log(
+    text,
+    text,
+    text,
+    jsonb
+) from public;
+
+
+grant execute on function public.create_audit_log(
+    text,
+    text,
+    text,
+    jsonb
+) to authenticated;
