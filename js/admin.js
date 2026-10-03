@@ -40,30 +40,75 @@ async function checkAdminAccess() {
 checkAdminAccess();
 
 //when admin creates an election
-await supabaseClient.rpc(
-    "create_audit_log",
-    {
-        p_action: "ELECTION_CREATED",
-        p_entity_type: "election",
-        p_entity_id: election.id,
-        p_metadata: {
-            title: election.title
-        }
+async function createElection(electionData) {
+
+    const { data: election, error } = await supabaseClient
+        .from("elections")
+        .insert(electionData)
+        .select()
+        .single();
+
+    if (error) {
+        console.error("Election creation failed:", error);
+        return;
     }
-);
+
+    // Election was successfully created.
+    // Now create the audit record.
+
+    const { error: auditError } = await supabaseClient.rpc(
+        "create_audit_log",
+        {
+            p_action: "ELECTION_CREATED",
+            p_entity_type: "election",
+            p_entity_id: election.id,
+            p_metadata: {
+                title: election.title
+            }
+        }
+    );
+
+    if (auditError) {
+        console.error("Audit logging failed:", auditError);
+    }
+
+    console.log("Election created:", election);
+}
+
+createElection(electionData);
 
 //when admin adds a candidate
-await supabaseClient.rpc(
-    "create_audit_log",
-    {
-        p_action: "CANDIDATE_ADDED",
-        p_entity_type: "candidate",
-        p_entity_id: candidate.id,
-        p_metadata: {
-            name: candidate.name
-        }
+async function addCandidate(candidateData) {
+
+    const { data: candidate, error } = await supabaseClient
+        .from("candidates")
+        .insert(candidateData)
+        .select()
+        .single();
+
+    if (error) {
+        console.error("Candidate creation failed:", error);
+        return;
     }
-);
+
+    const { error: auditError } = await supabaseClient.rpc(
+        "create_audit_log",
+        {
+            p_action: "CANDIDATE_ADDED",
+            p_entity_type: "candidate",
+            p_entity_id: candidate.id,
+            p_metadata: {
+                name: candidate.name
+            }
+        }
+    );
+
+    if (auditError) {
+        console.error("Audit logging failed:", auditError);
+    }
+}
+
+addCandidate(candidateData);
 
 //when results are published
 await supabaseClient.rpc(
