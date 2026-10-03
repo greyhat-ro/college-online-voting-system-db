@@ -35,6 +35,7 @@ begin
 end;
 $$;
 
+-- Only administrators can read audit logs
 create policy "Only admins can view audit logs"
 on public.audit_logs
 for select
